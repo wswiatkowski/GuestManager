@@ -30,7 +30,7 @@ class DbManager:
 
     def get_users(self, name='', email=''):
         self.cursor.execute(
-            "SELECT * FROM {table} WHERE email ~ '{name}' OR invitee ~ '{email}';".format(table=TABLE,
+            "SELECT * FROM {table} WHERE email ~ '{email}' OR invitee ~ '{name}';".format(table=TABLE,
                                                                                           email=email,
                                                                                           name=name))
 
@@ -38,11 +38,9 @@ class DbManager:
 
     def delete_user(self, name, email):
         self.cursor.execute(
-            "DELETE FROM {table} WHERE email = '{name}' AND invitee = '{email}';".format(table=TABLE,
+            "DELETE FROM {table} WHERE email = '{email}' AND invitee = '{name}';".format(table=TABLE,
                                                                                          email=email,
                                                                                          name=name))
-
-        return True
 
     def create_user(self, name, email):
         self.cursor.execute("INSERT INTO {table} VALUES ('{name}', '{email}')".format(table=TABLE, name=name,
@@ -56,7 +54,7 @@ class DbManager:
         self.cursor.execute("SELECT count(*) FROM {table} WHERE email = '{email}';".format(table=TABLE, email=email))
         emails = int(self.cursor.fetchall()[0][0])
 
-        if emails + names > 2:
+        if emails + names > 1:
             self.cursor.execute(
                 "SELECT * FROM {table} WHERE email = '{email}' OR invitee = '{name}';".format(table=TABLE,
                                                                                               email=email,
@@ -82,6 +80,7 @@ class DbManager:
 
 
 dbconn = DbManager()
-# print dbconn.create_user('mlfwfwefwn2', 'mlninteergenfwwefet.pl')
+# print dbconn.update_user('internet', '.pl')
 # print dbconn.get_users()
 # print dbconn.fetch_user('milena', 'dupa')
+print dbconn.delete_user('milena mielna', 'milena@internet.pl')
