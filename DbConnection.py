@@ -23,10 +23,26 @@ class DbManager:
 
     def fetch_user(self, name, email):
         self.cursor.execute(
-            "SELECT * FROM {table} WHERE email = '{email}' AND invitee = '{name}';".format(table=TABLE,
-                                                                                           email=email,
-                                                                                           name=name))
+            "SELECT * FROM {table} WHERE email = '{email}' AND invitee = '{name}' LIMIT 1;".format(table=TABLE,
+                                                                                                   email=email,
+                                                                                                   name=name))
         return self.cursor.fetchall()
+
+    def get_users(self, name='', email=''):
+        self.cursor.execute(
+            "SELECT * FROM {table} WHERE email ~ '{name}' OR invitee ~ '{email}';".format(table=TABLE,
+                                                                                          email=email,
+                                                                                          name=name))
+
+        return self.cursor.fetchall()
+
+    def delete_user(self, name, email):
+        self.cursor.execute(
+            "DELETE FROM {table} WHERE email = '{name}' AND invitee = '{email}';".format(table=TABLE,
+                                                                                         email=email,
+                                                                                         name=name))
+
+        return True
 
     def create_user(self, name, email):
         self.cursor.execute("INSERT INTO {table} VALUES ('{name}', '{email}')".format(table=TABLE, name=name,
@@ -66,4 +82,6 @@ class DbManager:
 
 
 dbconn = DbManager()
-print dbconn.create_user('mlfwfwefwn2', 'mlninteergenfwwefet.pl')
+# print dbconn.create_user('mlfwfwefwn2', 'mlninteergenfwwefet.pl')
+# print dbconn.get_users()
+# print dbconn.fetch_user('milena', 'dupa')
