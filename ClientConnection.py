@@ -1,6 +1,6 @@
 import json
 
-from flask import Flask, request
+from flask import Flask, request, Response
 from flask_api import status
 
 from DbConnection import DbManager
@@ -31,7 +31,7 @@ def update_user():
     except NameError as e:
         return e.message, status.HTTP_409_CONFLICT
 
-    return str(parse_output(ret)), status.HTTP_201_CREATED
+    return Response(str(parse_output(ret)), status.HTTP_201_CREATED, mimetype='application/json;charset=utf-8')
 
 
 @app.route('/invitation', methods=['PUT'])
@@ -40,7 +40,7 @@ def create_user():
 
     ret = db.create_user(dct['invitee'], dct['email'])
 
-    return str(parse_output(ret)), status.HTTP_201_CREATED
+    return Response(str(parse_output(ret)), status.HTTP_201_CREATED, mimetype='application/json;charset=utf-8')
 
 
 @app.route('/invitation', methods=['DELETE'])
@@ -49,11 +49,13 @@ def delete_user():
 
     db.delete_user(dct['invitee'], dct['email'])
 
-    return "Invitee {name} deleted.".format(name=dct['invitee']), status.HTTP_200_OK
+    return Response("Invitee {name} deleted.".format(name=dct['invitee']), status.HTTP_200_OK, mimetype='application/'
+                                                                                                        'plain;charset'
+                                                                                                        '=utf-8')
 
 
 @app.route('/invitation', methods=['GET'])
 def get_users():
     ret = db.get_users()
 
-    return str(parse_output(ret)), status.HTTP_200_OK
+    return Response(str(parse_output(ret)), status.HTTP_200_OK, mimetype='application/json;charset=utf-8')
