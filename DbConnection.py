@@ -78,9 +78,3 @@ class DbManager:
 
         return self.fetch_user(name, email)
 
-
-dbconn = DbManager()
-# print dbconn.update_user('internet', '.pl')
-# print dbconn.get_users()
-# print dbconn.fetch_user('milena', 'dupa')
-print dbconn.delete_user('milena mielna', 'milena@internet.pl')
