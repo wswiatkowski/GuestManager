@@ -20,7 +20,8 @@ GuestManager 0.1 by wswiatkowski
     - Simply PUT, POST, DELETE or GET invitees to your guest list
 
 3. Methods explanation
-    All methods accepts only application/json input, and responds with (JSON output/error message) and response code.
+
+All methods accepts only application/json input, and responds with (JSON output/error message) and response code.
     - PUT(name, email)
       Creates user from scratch no matter what.
 
