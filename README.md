@@ -1,15 +1,16 @@
 GuestManager 0.1 by wswiatkowski
 
 1. Prerequisites
-pip packages:
+
+    pip packages:
     - flask
     - flask_api
     - psycopg2
-
-db:
+    
+    db:
     - PostgreSQL
 
-recommended:
+    recommended:
     - Postman
 
 2. First run
