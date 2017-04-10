@@ -1,7 +1,7 @@
 import psycopg2
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 
-USER = 'evojam'
+USER = 'anystring'
 DBNAME = 'test1'
 PASSWORD = ''
 TABLE = 'invitees'
