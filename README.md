@@ -14,6 +14,13 @@ GuestManager 0.1 by wswiatkowski
     - Postman
 
 2. First run
+    2a. Configuring PostgreSQL database
+        In console do following steps:
+        - Type createuser (username)
+        - Type createdb (dbname)
+        - Then enter just created db in interactive mode and type 
+            CREATE TABLE invitees (invitee varchar(40), email varchar(40));
+            
     - Make sure that your PostgreSQL database is set up and configured as in ./DbConnection.py file.
     - Run ./run.sh to define needed environment variable and run Flask server
     - Open Postman and set URL to http://localhost:5000/invitation
